@@ -1,0 +1,16 @@
+ <mat-toolbar class="sticky" style="background-color:#02192E">
+  &nbsp;&nbsp;
+  <app-brand style="padding-left:20px"></app-brand>
+  <span class="navbar-collapse" [attr.data-collapse]="isCollapsed">
+                <ul class="nav navbar-nav nav-pills navBarPadding font"style="padding-left:200px;" >
+                    <li class=" font active"routerLinkActive="active"><a href="/home">Home</a></li>
+                    <li routerLinkActive="active"><a href="/product">Products</a></li>
+                    <li routerLinkActive="active"><a href="/about">About Us</a></li>
+                    <li routerLinkActive="active"><a href="">Contact</a></li>
+                    <li routerLinkActive="active"><a href="">Clients</a></li>
+                    <li routerLinkActive="active"><a href="">Login</a></li>
+
+                </ul>
+            </span>
+</mat-toolbar>
+<app-sidebar></app-sidebar>
