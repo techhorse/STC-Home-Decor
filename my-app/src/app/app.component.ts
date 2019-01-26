@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AgmCoreModule } from '@agm/core';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'my-app';
-}
+
+  constructor() {}
+  }
