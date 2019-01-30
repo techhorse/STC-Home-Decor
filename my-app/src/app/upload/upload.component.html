@@ -1,0 +1,11 @@
+<p>
+  upload works!
+</p>
+
+<input type="file" (change)="featuredPhotoSelected($event)">
+    <button type="button" (click)="onUpload">Upload</button><br>
+    <img src = {{img}} alt = "Photo" >
+
+    <div class="formGroup">
+        <button type="button" class="btn btnPrimary"  (click)="authService.SignOut()">Log Out</button>
+      </div>

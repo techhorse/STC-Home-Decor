@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Routes } from '@angular/router';
 
+
 import { AppComponent } from './app.component';
 import { BodyComponent } from './body/body.component';
 import { HeaderComponent } from './header/header.component';
@@ -12,7 +13,7 @@ import { SidebarComponent } from './header/menu/sidebar/sidebar.component';
 import { SidebarDirective } from './header/menu/sidebar/sidebar.directive';
 import { FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatToolbarModule,MatGridListModule, MatIconModule, MatMenuModule} from '@angular/material';
+import {MatToolbarModule,MatGridListModule, MatIconModule, MatMenuModule,MatFormFieldModule,MatInputModule} from '@angular/material';
 import { ProductComponent } from './product/product.component';
 import { SlideComponent } from './body/slide/slide.component';
 import { AboutComponent } from './about/about.component';
@@ -26,7 +27,12 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../environments/environment';
 import { FlexLayoutModule} from '@angular/flex-layout';
 import { AngularFireStorage } from 'angularfire2/storage';
-
+import { AngularFirestore, AngularFirestoreCollection,AngularFirestoreModule } from '@angular/fire/firestore';
+//import { FetchingService } from 'src/app/fetching.service';
+import { AuthService } from '././auth.service';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { UploadComponent } from './upload/upload.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 
@@ -36,7 +42,8 @@ const appRoutes: Routes = [
   //{ path: 'contact', component: ContactComponent  },
   { path: 'about', component: AboutComponent  },
   { path: 'home', component: HomeComponent  },
-  { path: 'login', component: LoginComponent  },
+  { path: 'Login', component: LoginComponent  },
+  { path: 'upload', component: UploadComponent  },
 ];
 @NgModule({
   declarations: [
@@ -53,6 +60,7 @@ const appRoutes: Routes = [
     LoginComponent,
     HomeComponent,
     FooterComponent,
+    UploadComponent,
 
   ],
   imports: [
@@ -68,9 +76,15 @@ const appRoutes: Routes = [
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     FlexLayoutModule,
+    MatFormFieldModule,
+    MatInputModule,
+    AngularFirestoreModule.enablePersistence(),
+    AngularFireAuthModule,
+    NgxSpinnerModule,
 
   ],
-  providers: [AngularFireStorage],
+  providers: [AngularFireStorage,AuthService,AngularFirestore
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
