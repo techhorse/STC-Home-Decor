@@ -2,7 +2,7 @@ import { AgmCoreModule } from '@agm/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Routes } from '@angular/router';
-
+import { LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { BodyComponent } from './body/body.component';
@@ -13,7 +13,23 @@ import { SidebarComponent } from './header/menu/sidebar/sidebar.component';
 import { SidebarDirective } from './header/menu/sidebar/sidebar.directive';
 import { FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatToolbarModule,MatGridListModule, MatIconModule, MatMenuModule,MatFormFieldModule,MatInputModule} from '@angular/material';
+import {MatToolbarModule,
+        MatGridListModule,
+        MatIconModule,
+        MatMenuModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatCardTitle,
+        MatCardSubtitle,
+        MatCardImage,
+        MatCardHeader,
+        MatCardContent,
+        MatTab,
+        MatTabGroup,
+        MatCardModule,
+        MatTabsModule,
+
+      } from '@angular/material';
 import { ProductComponent } from './product/product.component';
 import { SlideComponent } from './body/slide/slide.component';
 import { AboutComponent } from './about/about.component';
@@ -33,17 +49,22 @@ import { AuthService } from '././auth.service';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { UploadComponent } from './upload/upload.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
-
+import { DetailsComponent } from './details/details.component';
+import { ContactComponent } from './contact/contact.component';
+import { ReviewComponent } from './review/review.component';
+import { OwlModule } from 'ngx-owl-carousel';
+//import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload/ng2-file-upload';
 
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent  },
   { path: 'product', component: ProductComponent  },
-  //{ path: 'contact', component: ContactComponent  },
+  { path: 'contact', component: ContactComponent  },
   { path: 'about', component: AboutComponent  },
   { path: 'home', component: HomeComponent  },
   { path: 'Login', component: LoginComponent  },
   { path: 'upload', component: UploadComponent  },
+  { path: 'review', component: ReviewComponent  },
 ];
 @NgModule({
   declarations: [
@@ -61,6 +82,9 @@ const appRoutes: Routes = [
     HomeComponent,
     FooterComponent,
     UploadComponent,
+    DetailsComponent,
+    ContactComponent,
+    ReviewComponent,
 
   ],
   imports: [
@@ -68,6 +92,7 @@ const appRoutes: Routes = [
     FormsModule,
     BrowserAnimationsModule,
     MatToolbarModule,
+    OwlModule,
     MatGridListModule,
     MatIconModule,
     MatMenuModule,
@@ -81,10 +106,12 @@ const appRoutes: Routes = [
     AngularFirestoreModule.enablePersistence(),
     AngularFireAuthModule,
     NgxSpinnerModule,
+    MatCardModule,
+    MatTabsModule,
+    HttpClientModule
 
   ],
-  providers: [AngularFireStorage,AuthService,AngularFirestore
-  ],
-  bootstrap: [AppComponent]
+  providers: [AngularFireStorage,AuthService,AngularFirestore],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

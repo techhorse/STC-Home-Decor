@@ -1,5 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
-import { User } from 'user';
+import { User } from '././././user';
 import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
@@ -45,7 +45,9 @@ export class AuthService {
         });
         this.SetUserData(result.user);
       }).catch((error) => {
-        window.alert(error.message)
+
+        window.alert("Signin Failed!!Please Try Again.");
+        this.spinner.hide();
       })
   }
 
@@ -125,6 +127,7 @@ export class AuthService {
   SignOut() {
     return this.afAuth.auth.signOut().then(() => {
       localStorage.removeItem('user');
+      window.alert("Signout Sucessfull!!");
       this.router.navigate(['/Login']);
     })
   }

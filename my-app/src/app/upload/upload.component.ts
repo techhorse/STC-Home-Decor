@@ -11,6 +11,8 @@ import {AngularFireStorage,AngularFireStorageReference,AngularFireUploadTask} fr
 //import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import {FormGroup, FormsModule,ReactiveFormsModule,FormBuilder} from '@angular/forms';
 import { AuthService } from '../auth.service';
+//import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload/ng2-file-upload';
+
 
 @Component({
   selector: 'app-upload',
@@ -21,6 +23,9 @@ import { AuthService } from '../auth.service';
 export class UploadComponent implements OnInit {
   title = 'my-app';
   public img: string;
+   file: File;
+   details:string;
+   price:string;
   @Output() url1 = new EventEmitter();
   //public featuredPhotoStream = FirebaseListObservable <FeaturedPhotosUrls>;
   constructor(public db: AngularFireStorage,public authService: AuthService) {
@@ -47,16 +52,28 @@ export class UploadComponent implements OnInit {
 
 
   featuredPhotoSelected(event: any) {
-      const file: File = event.target.files[0];
-      console.log('selected file is', file.name);
-      const path = `files/${file.name}`;
-      const metadata = {'contentType': file.type};
-      const storageRef: firebase.storage.Reference =  firebase.storage().ref(path);
-      storageRef.put(file,metadata);
-      //firebase.storage().ref('/photos/featured').getDownloadURL().then(url => console.log(url) );
+      this.file = event.target.files[0];
 
-      console.log("Uploading",file.name);
+
   }
+
+onUpload(){
+  if(this.file == null)
+    window.alert("No file Selected");
+  console.log("hello");
+  console.log(this.file);
+    const path = `files/${this.file.name}`;
+  const metadata = {'contentType': this.file.type};
+  const storageRef: firebase.storage.Reference =  firebase.storage().ref(path);
+  let uploadTask = storageRef.put(this.file,metadata).then(x=>{
+    firebase.storage().ref(path).getDownloadURL().then(url => {
+      console.log("uploaded");
+    firebase.database().ref('files').push({url:url,detail:this.details,price:this.price},);
+
+    } );
+  });
+}
+
 
 
   ngOnInit() {

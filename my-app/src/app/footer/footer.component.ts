@@ -35,7 +35,7 @@ interface FeaturedPhotosUrls {
 })
 
 export class FooterComponent implements OnInit {
-
+email:string;
   constructor() {
 
 
