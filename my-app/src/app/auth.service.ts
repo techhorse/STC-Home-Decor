@@ -13,6 +13,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 
 export class AuthService {
   userData: any; // Save logged in user data
+  emailVerify : boolean;
 
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
@@ -41,13 +42,16 @@ export class AuthService {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((result) => {
         this.ngZone.run(() => {
+          console.log('successful login');
+          this.spinner.hide();
+          this.emailVerify = true;
           this.router.navigate(['upload']);
         });
         this.SetUserData(result.user);
       }).catch((error) => {
 
         window.alert("Signin Failed!!Please Try Again.");
-        this.spinner.hide();
+
       })
   }
 
@@ -83,9 +87,11 @@ export class AuthService {
   }
 
   // Returns true when user is looged in and email is verified
-  get isLoggedIn(): boolean {
+  isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
+    console.log(user);
     return (user !== null && user.emailVerified !== false) ? true : false;
+
   }
 
   // Sign in with Google

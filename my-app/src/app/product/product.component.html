@@ -1,57 +1,13 @@
 <app-menu></app-menu>
-<br>
-<h1 style="text-align:center">Products</h1><br>
-<div style="padding:0px 25px 0px 25px;">
-<div style="background-color:#f1f1f1;"class="row">
-  <div class="column">
-      <div class="content" #image>
-          <img>
-          <img>
-          <img>
-          <div>
-          <img>
-              <div style="background-color:#AED8D7;" class="hover-content">
-                   <div class="line"></div>
-                      <p>{{price}}</p>
-                      <h4><a href="/details" >{{details}}</a></h4>
-                    </div>
-              </div>
-            </div>
-    <img src="assets/img/bg-img/1.jpg">
-    <img src="assets/img/bg-img/1.jpg">
-    <img src="assets/img/bg-img/1.jpg">
-    <img src="assets/img/bg-img/1.jpg">
-    <img src="assets/img/bg-img/1.jpg">
-    <img src="assets/img/bg-img/1.jpg">
-  </div>
-  <div class="column">
-    <img src="assets/img/bg-img/2.jpg">
-    <img src="assets/img/bg-img/2.jpg">
-    <img src="assets/img/bg-img/2.jpg">
-    <img src="assets/img/bg-img/2.jpg">
-    <img src="assets/img/bg-img/2.jpg">
-    <img src="assets/img/bg-img/2.jpg">
-    <img src="assets/img/bg-img/2.jpg">
-  </div>
-  <div class="column">
-    <img src="assets/img/bg-img/3.jpg">
-    <img src="assets/img/bg-img/3.jpg">
-    <img src="assets/img/bg-img/3.jpg">
-    <img src="assets/img/bg-img/3.jpg">
-    <img src="assets/img/bg-img/3.jpg">
-    <img src="assets/img/bg-img/3.jpg">
-    <img src="assets/img/bg-img/3.jpg">
-  </div>
-  <div class="column">
-    <img src="assets/img/bg-img/4.jpg">
-    <img src="assets/img/bg-img/4.jpg">
-    <img src="assets/img/bg-img/4.jpg">
-    <img src="assets/img/bg-img/4.jpg">
-    <img src="assets/img/bg-img/4.jpg">
-    <img src="assets/img/bg-img/4.jpg">
-     <img src="assets/img/bg-img/4.jpg">
-  </div>
-</div>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<ng-container *ngFor="let customer of fileUploads">
+				<div class="col-md-3">
+					<img [src]="customer.url" alt="name" height="200" width="250"/>
+				</div>
+			</ng-container>
+		</div>
+	</div>
 </div>
 <app-footer></app-footer>
-

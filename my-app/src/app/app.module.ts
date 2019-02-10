@@ -14,7 +14,6 @@ import { SidebarDirective } from './header/menu/sidebar/sidebar.directive';
 import { FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatToolbarModule,
-        MatGridListModule,
         MatIconModule,
         MatMenuModule,
         MatFormFieldModule,
@@ -28,12 +27,13 @@ import {MatToolbarModule,
         MatTabGroup,
         MatCardModule,
         MatTabsModule,
+        MatGridListModule,
 
       } from '@angular/material';
 import { ProductComponent } from './product/product.component';
 import { SlideComponent } from './body/slide/slide.component';
 import { AboutComponent } from './about/about.component';
-import { RouterModule, } from '@angular/router';
+import { RouterModule,CanActivate } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
@@ -53,9 +53,9 @@ import { DetailsComponent } from './details/details.component';
 import { ContactComponent } from './contact/contact.component';
 import { ReviewComponent } from './review/review.component';
 import { OwlModule } from 'ngx-owl-carousel';
+import { AuthGuard } from './AuthGuard';
 //import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload/ng2-file-upload';
-
-
+import * as firebase from 'firebase/';
 const appRoutes: Routes = [
   { path: '', component: HomeComponent  },
   { path: 'product', component: ProductComponent  },
@@ -63,7 +63,7 @@ const appRoutes: Routes = [
   { path: 'about', component: AboutComponent  },
   { path: 'home', component: HomeComponent  },
   { path: 'Login', component: LoginComponent  },
-  { path: 'upload', component: UploadComponent  },
+  { path: 'upload', component: UploadComponent },
   { path: 'review', component: ReviewComponent  },
 ];
 @NgModule({
@@ -108,10 +108,11 @@ const appRoutes: Routes = [
     NgxSpinnerModule,
     MatCardModule,
     MatTabsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatGridListModule,
 
   ],
-  providers: [AngularFireStorage,AuthService,AngularFirestore],
+  providers: [AngularFireStorage,AuthService,AngularFirestore,AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

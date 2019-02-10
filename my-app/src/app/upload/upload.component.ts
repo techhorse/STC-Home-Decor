@@ -11,6 +11,7 @@ import {AngularFireStorage,AngularFireStorageReference,AngularFireUploadTask} fr
 //import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import {FormGroup, FormsModule,ReactiveFormsModule,FormBuilder} from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { checkAndUpdateBinding } from '@angular/core/src/view/util';
 //import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload/ng2-file-upload';
 
 
@@ -29,19 +30,14 @@ export class UploadComponent implements OnInit {
   @Output() url1 = new EventEmitter();
   //public featuredPhotoStream = FirebaseListObservable <FeaturedPhotosUrls>;
   constructor(public db: AngularFireStorage,public authService: AuthService) {
-    //this.featuredPhotoStream = this.db.object('/photos/featured');
-    //firebase.storage().ref('/photos/featured/url1').getDownloadURL().then(url => console.log(url) );
-    /*firebase.storage().ref('/photos/featured/url1').getDownloadURL().then(downloadURL => {
+    /*this.featuredPhotoStream = this.db.object('/photos/featured');
+    firebase.storage().ref('/photos/featured/url1').getDownloadURL().then(url => console.log(url) );
+    firebase.storage().ref('/photos/featured/url1').getDownloadURL().then(downloadURL => {
     const imageUrl = downloadURL;
     console.log('URL:' + imageUrl);
     this.img = imageUrl;
 });*/
-
-
   }
-
-
-
 
 
 
@@ -67,8 +63,8 @@ onUpload(){
   const storageRef: firebase.storage.Reference =  firebase.storage().ref(path);
   let uploadTask = storageRef.put(this.file,metadata).then(x=>{
     firebase.storage().ref(path).getDownloadURL().then(url => {
-      console.log("uploaded");
     firebase.database().ref('files').push({url:url,detail:this.details,price:this.price},);
+    window.alert("File Uploaded Successfully!!");
 
     } );
   });
@@ -80,5 +76,4 @@ onUpload(){
 
   }
 
-}
-
+  }

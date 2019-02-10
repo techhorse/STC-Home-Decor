@@ -44,7 +44,7 @@ getFileUploads(numberOfItems): AngularFireList<any> {
 }
 
 getImage() {
-  this.getFileUploads(4).snapshotChanges().pipe(map(changes => {
+  this.getFileUploads(8).snapshotChanges().pipe(map(changes => {
     return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
   })).subscribe(fileUploads => {
     this.fileUploads = fileUploads;
