@@ -12,17 +12,15 @@ import {AngularFireStorageReference,AngularFireUploadTask} from 'angularfire2/st
               './responsive.css',
 
 
+
 ]
 })
 export class ContactComponent implements OnInit {
-  email:string;
-  name:string;
-  constructor (public db: AngularFireStorage,public authService: AuthService) {}
-  addUser() {
-    firebase.database().ref('/sendmail').push({emailid:this.email,name:this.name},);
-    window.alert("'Submitted Sucesfully");
 
-  }
+  constructor (public db: AngularFireStorage,public authService: AuthService) {}
+
+
+
 
 
   ngOnInit() {

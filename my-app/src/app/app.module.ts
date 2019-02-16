@@ -54,6 +54,8 @@ import { ContactComponent } from './contact/contact.component';
 import { ReviewComponent } from './review/review.component';
 import { OwlModule } from 'ngx-owl-carousel';
 import { AuthGuard } from './AuthGuard';
+import {ImageZoomModule} from 'angular2-image-zoom';
+import * as emailjs from 'emailjs-com';
 //import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import * as firebase from 'firebase/';
 const appRoutes: Routes = [
@@ -63,7 +65,7 @@ const appRoutes: Routes = [
   { path: 'about', component: AboutComponent  },
   { path: 'home', component: HomeComponent  },
   { path: 'Login', component: LoginComponent  },
-  { path: 'upload', component: UploadComponent },
+  { path: 'upload', component: UploadComponent,canActivate:[AuthGuard] },
   { path: 'review', component: ReviewComponent  },
 ];
 @NgModule({
@@ -110,6 +112,7 @@ const appRoutes: Routes = [
     MatTabsModule,
     HttpClientModule,
     MatGridListModule,
+    ImageZoomModule,
 
   ],
   providers: [AngularFireStorage,AuthService,AngularFirestore,AuthGuard],

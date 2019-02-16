@@ -37,16 +37,16 @@ export class AuthService {
   }
 
   // Sign in with email/password
-  SignIn(email, password) {
+   SignIn(email, password) {
     this.spinner.show();
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((result) => {
         this.ngZone.run(() => {
           console.log('successful login');
           this.spinner.hide();
-          this.emailVerify = true;
           this.router.navigate(['upload']);
         });
+        console.log(result.user);
         this.SetUserData(result.user);
       }).catch((error) => {
 
@@ -90,7 +90,7 @@ export class AuthService {
   isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
     console.log(user);
-    return (user !== null && user.emailVerified !== false) ? true : false;
+    return (user !== null ) ? true : false;
 
   }
 
